@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+<script>
+    /**
+     * 获取canvas
+     *
+     * 每次开始画一根线时，建议告知canvas 需要重新开始画了:  context.beginPath();    //标记开始点
+     * 移动笔触的坐标点 context.moveTo(0,0);    //起始点
+     * 以每一根线画到对应的位置 context.lineTo(100,100);    //结束点
+     * canvas中将就填充， 描边 context.fill();  context.stroke();
+     * @type {HTMLElement | null}
+     */
+    var canvas = document.getElementById("canvas");
+    //设置canvas的宽度,高度
+    canvas.width = 200;
+    canvas.height = 200;
+    var context = canvas.getContext("2d");
+    context.lineWidth = 5;
+    context.strokeStyle = "#AA394C";
+
+    //设置笔触的开始点
+    context.beginPath();    //标记开始点
+    context.moveTo(0,0);    //起始点
+    context.lineTo(100,100);    //结束点
+
+    context.stroke();
+    context.closePath();    //关闭结束路径
+
+    context.beginPath();    //标记开始点
+    context.moveTo(100,100);    //起始点
+    context.lineTo(200,0);
+    context.stroke();
+    context.closePath();
+
+    context.beginPath();    //标记开始点
+    context.moveTo(100,100);    //起始点
+    context.lineTo(0,200);
+    context.stroke();
+    context.closePath();
+
+
+    context.beginPath();    //标记开始点
+    context.moveTo(100,100);    //起始点
+    context.lineTo(200,200);
+    context.stroke();
+    context.closePath();
+
+</script>
+</body>
+</html>
