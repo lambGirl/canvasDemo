@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制矩形</title>
+</head>
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+
+        <canvas id="canvas_each" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+    <script>
+        var canvas =  document.getElementById("canvas");
+        canvas.width =  400;
+        canvas.height = 400;
+
+        var context =  canvas.getContext("2d");
+
+        //绘制矩形
+        context.beginPath();
+        context.moveTo(50,50);
+        context.lineTo(150,50);
+        context.lineTo(150,150);
+        context.lineTo(50,150);
+       /* context.lineTo(150,50);     //最后一笔可以不画*/
+        context.closePath();        //这里可以直接用closPath来闭合。 必须要放在最后一个封闭线上。
+        context.lineWidth = 5;
+        context.fillStyle = "yellow";   //选择油漆桶的颜色
+        context.strokeStyle = "black";  //这个代指描边的颜色
+
+        //描边
+        context.stroke();
+
+        //填充
+        context.fill();                 //确定填充
+
+
+        var canvas_each =  document.getElementById("canvas_each");
+        canvas_each.width =  400;
+        canvas_each.height = 400;
+        var canvas_each_context =  canvas_each.getContext("2d");
+
+        drawRect(canvas_each_context, 50,50, 100,100, "red", 5, "blue")
+        drawRect(canvas_each_context, 160,160, 50,50, "green", 5, "red")
+        drawRect(canvas_each_context, 220, 220, 30,30, "yellow", 5, "black")
+
+        drawRect(canvas_each_context, 260, 260, 20,20, "yellow", 2, "red")
+        /**
+         * 封装一下画矩形的方法
+         */
+        function　drawRect(cxt,x,y,width, height, fillColor, borderWidth, borderColor){
+            /**
+             * cxt: canvas的context
+             * x: 起始点x坐标
+             * y: 起始点y坐标
+             * width: 设置宽度
+             * height: 设置高度
+             * fillColor: 填充色
+             * borderWidth: 描边的宽度
+             * borderColor: 描边的颜色
+             */
+
+            cxt.beginPath();
+            cxt.moveTo(x, y);
+            cxt.lineTo(x+width, y);
+            cxt.lineTo(x+width, y+height);
+            cxt.lineTo(x, y+height);
+            cxt.closePath();
+            cxt.fillStyle = fillColor;
+            cxt.lineWidth = borderWidth;
+            cxt.strokeStyle = borderColor;
+
+            cxt.fill();
+            cxt.stroke();
+        }
+
+    </script>
+</body>
+</html>
