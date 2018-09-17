@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用arc()绘制圆弧</title>
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+</head>
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+</body>
+<script>
+    /**
+     * context.arc(x,y,radius,startAngle,endAngle,anticlockwise)
+     * 前面三个参数，分别是圆心坐标与圆半径。startAngle、endAngle使用的是弧度值，不是角度值。弧度的规定是绝对的
+     * anticlockwise表示绘制的方法，是顺时针还是逆时针绘制。它传入布尔值，true表示逆时针绘制，false表示顺时针绘制，缺省值为false。
+     *
+     * 比如你绘制 0.5pi ~ 1pi 的圆弧，如果顺时针画，就只是左下角那1/4个圆弧；
+     * 如果逆时针画，就是与之互补的右上角的3/4圆弧。此处自己尝试，不再举例。
+     */
+    window.onload = function(){
+        var canvas =  document.getElementById("canvas");
+
+        canvas.width =  800;
+        canvas.height =  600;
+        var context = canvas.getContext("2d");
+
+        context.fillStyle = '#fff';
+        context.fillRect(0,0,800,600);
+
+        context.beginPath();
+        context.arc(200+50, 100+50, 50, Math.PI, Math.PI*1.5);
+        context.lineTo(200+400-50, 100);
+        context.arc(400-50+200, 100+50, 50, Math.PI*1.5, Math.PI*2);
+        context.lineTo(200+400, 400+100-50);
+        context.arc(400-50+200, 400+100-50, 50, 0, Math.PI*0.5);
+        context.lineTo(200+50, 100+400);
+        context.arc(200+50, 400+100-50, 50, Math.PI*0.5, Math.PI*1);
+        context.lineTo(200, 100+50);
+        context.strokeStyle = "#0078AA";
+        context.stroke();
+    }
+</script>
+</html>

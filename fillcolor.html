@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色运用</title>
+</head>
+<body>
+        <!--
+            1.填充渐变形状
+                线性或径向:线性渐变创建一个水平、垂直或者对角线的填充图案
+                径向渐变:自中心点创建一个放射状填充。填充渐变形状分为三步：添加渐变线，为渐变线添加关键色，应用渐变
+
+
+                线性渐变
+                    三步走战略：
+                        1. 添加渐变线: var grd = context.createLinearGradient(xstart,ystart,xend,yend);
+                        2. 为渐变线添加关键色(类似于颜色断点)：grd.addColorStop(stop,color);
+                        这里的stop传递的是 0 ~ 1 的浮点数，代表断点到(xstart,ystart)的距离占整个渐变色长度是比例。
+                        3. 应用渐变：
+                        context.fillStyle = grd;
+                        context.strokeStyle = grd;
+
+        -->
+        <div id="canvas-warp">
+            <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+                你的浏览器居然不支持Canvas？！赶快换一个吧！！
+            </canvas>
+        </div>
+
+</body>
+<script>
+    window.onload =  function(){
+        var canvas =  document.getElementById("canvas");
+        canvas.width =  800;
+        canvas.height =  600;
+        var context  = canvas.getContext("2d");
+
+        //绘制矩形
+        context.rect(0,0,300,300);
+
+        //添加渐变线
+        var grd = context.createLinearGradient(0,100,100,100);
+
+        //添加颜色断点
+        grd.addColorStop(0,"black");
+        grd.addColorStop(0.5,"white");
+        grd.addColorStop(1,"black");
+
+        //应用渐变
+        context.fillStyle = grd;
+
+        context.fill();
+
+
+
+        //添加渐变线
+        var grd = context.createLinearGradient(100,300,700,300);
+        //添加颜色断点
+        grd.addColorStop(0,"olive");
+        grd.addColorStop(0.25,"maroon");
+        grd.addColorStop(0.5,"aqua");
+        grd.addColorStop(0.75,"fuchsia");
+        grd.addColorStop(0.25,"teal");
+
+        //应用渐变
+        context.fillStyle = grd;    //填充的颜色
+        context.strokeStyle = grd;  //描边的颜色
+
+        /*context.strokeRect(200,50,300,50);
+        context.strokeRect(200,100,150,50);
+        context.strokeRect(200,150,450,50);
+
+
+        context.fillRect(200,300,300,50);
+        context.fillRect(200,350,150,50);
+        context.fillRect(200,400,450,50);
+        context.fillRect(0,550,800,25);*/
+        /**
+         * 径向渐变
+         * 添加渐变圆：
+         *   var grd = context.createRadialGradient(x0,y0,r0,x1,y1,r1);
+         *   2.为渐变线添加关键色(类似于颜色断点)：
+         *      grd.addColorStop(stop,color);
+         *   3. 应用渐变：
+         *      context.fillStyle = grd;
+                context.strokeStyle = grd;
+             4. 线性渐变是基于两个端点定义的，但是径向渐变是基于两个圆定义的。
+
+         */
+
+            //添加渐变线
+        var grd = context.createRadialGradient(400,300,10,400,300,200);
+        //添加颜色断点
+        grd.addColorStop(0,"maroon");
+       /* grd.addColorStop(0.25,"maroon");*/
+       /* grd.addColorStop(0.5,"aqua");*/
+        grd.addColorStop(0.75,"aqua");/*
+        grd.addColorStop(0.25,"teal");*/
+
+        //应用渐变
+        context.fillStyle = grd;
+
+        context.fillRect(100,100,600,400);
+
+    }
+</script>
+</html>

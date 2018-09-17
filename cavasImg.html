@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片填充</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</body>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+
+        var img = new Image();
+        img.src = "cavasImg.jpg";
+        img.onload = function(){
+            var pattern = context.createPattern(img, "repeat-x");
+            context.fillStyle = pattern;
+            context.strokeStyle = pattern;
+            context.fillRect(0,0, 300,300)
+            context.strokeRect(200,320,400,80);
+        }
+
+    }
+</script>
+</html>
