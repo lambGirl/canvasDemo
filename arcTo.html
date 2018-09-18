@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用切点绘制圆弧----绘制弧线</title>
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+</head>
+<body>
+    <!--
+        arcTo()介绍: 接收5个参数
+        分别是两个切点的坐标和圆弧半径。
+        这个方法是依据切线画弧线，即由两个切线确定一条弧线。 具体如下。
+        arcTo(x1,y1,x2,y2,radius)
+        这个函数以给定的半径绘制一条弧线，圆弧的起点与当前路径的位置到(x1, y1)点的直线相切，
+        圆弧的终点与(x1, y1)点到(x2, y2)的直线相切。因此其通常配合moveTo()或lineTo()使用。
+        其能力是可以被更为简单的arc()替代的，其复杂就复杂在绘制方法上使用了切点。
+    -->
+    <div id="canvas-warp">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload =  function(){
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+        context.fillStyle = "#FFF";
+        context.fillRect(0,0,800,600);
+        /**
+         * cxt.arcTo(x1, y1, x2, y2, r)
+         */
+        drawArcTo(context, 100, 100, 600, 100, 600, 400,40);
+    }
+
+    function drawArcTo(cxt, x0, y0, x1, y1, x2, y2, r){
+        cxt.beginPath();
+        cxt.moveTo(x0+200, y0);
+        cxt.arcTo(x1, y1, x2, y2, r);
+
+        cxt.lineWidth = 6;
+        cxt.strokeStyle = "red";
+        cxt.stroke();
+
+        cxt.beginPath();
+        cxt.moveTo(x0, y0);
+        cxt.lineTo(x1, y1);
+        cxt.lineTo(x2, y2);
+
+        cxt.lineWidth = 1;
+        cxt.strokeStyle = "#0088AA";
+        cxt.stroke();
+
+    }
+</script>
+</html>
