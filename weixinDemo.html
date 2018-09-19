@@ -69,7 +69,11 @@
              *
              * 画底部btn
              */
-            //context.rect()
+            context.beginPath();
+            context.rect(100 , 470, 200,30);
+            context.fillStyle = "#0D87E4";
+            context.fillText("Hello World",10,50);
+            context.fill();
         }
         /**
          * 绘制一个四边形
@@ -83,7 +87,6 @@
             context.closePath();    //自动结束
             context.strokeStyle = "#0D87E4";
             context.stroke();
-
         }
 
         /**

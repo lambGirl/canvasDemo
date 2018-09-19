@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>矩阵变换</title>
+    <!--
+       在介绍矩阵变换transform()前，我们来说一说什么是变换矩阵。
+    -->
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+<script>
+    window.onload = function(){
+        var canvas =  document.getElementById("canvas");
+        canvas.height = 600;
+        canvas.width =  800;
+        var context = canvas.getContext("2d");
+        context.fillStyle = "#fff";
+        context.fillRect(0,0,800,600);
+
+        /*var Img =  new Image();
+        Img.src = "cavasImg.jpg";
+
+        Img.onload = function(){
+            var pattern = context.createPattern(img, "repeat-x");
+            context.fillStyle = pattern;
+            context.strokeStyle = pattern;
+            context.rect(0,0, 100,100);
+        }*/
+
+    }
+</script>
+</body>
+</html>
