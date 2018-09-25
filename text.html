@@ -45,6 +45,33 @@
 
         //3. 使用`fillText()`方法显示字体。
         context.fillText("《CANVAS--Draw on the Web》",50,300);
+
+        context.beginPath();
+        context.font = "italic small-caps bolder 50px Verdana ";
+        var gradient = context.createLinearGradient(0,0,800,0);
+        gradient.addColorStop("0","magenta");
+        gradient.addColorStop("0.5","blue");
+        gradient.addColorStop("1.0","red");
+
+        context.fillStyle = gradient;
+        context.strokeStyle = "#00AAAA";
+        context.strokeText("airingursb.github.io", 50, 100);
+        context.fillText("airingursb.github.io", 50, 200);
+        //限制宽度
+        context.fillText("airingursb.github.io", 50, 300, 200);
+
+        context.beginPath();
+        var img = new Image();
+        img.src = "./bg2.jpg";
+        img.onload = function(){
+            var pattern = context.createPattern(img, "repeat");
+            context.fillStyle = pattern;
+            context.fillText("airingursb.github.io", 50, 400);
+        }
+
+        context.beginPath();
+        context.fillStyle = "#00AAAA";
+        context.fillText("Airing的博客，欢迎访问", 50, 500);
     }
 </script>
 </html>
