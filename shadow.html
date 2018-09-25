@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shadow 阴影</title>
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+</head>
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload =  function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, 800, 600);
+        context.save();
+        context.fillStyle = "#34b5f4"
+        context.shadowColor = "#c1c1c1";
+        context.shadowOffsetX = 2;
+        context.shadowOffsetY = 2;
+        context.shadowBlur = 2;
+        context.fillRect(100, 100, 150, 300);
+
+        context.save();
+        context.beginPath();
+        context.globalAlpha = 0.2;  //透明度
+
+        for(var i=0; i<=50; i++){
+            var R = Math.floor(Math.random() * 255);
+            var G = Math.floor(Math.random() * 255);
+            var B = Math.floor(Math.random() * 255);
+
+            context.fillStyle = "rgb(" + R + "," + G + "," + B + ")";
+
+            context.beginPath();
+            context.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 100, 0, Math.PI * 2);
+            context.fill();
+        }
+    }
+
+</script>
+</html>
