@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setTransform()方法</title>
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+    <!--
+        不会延续之前的绘图,不会影响
+
+        transform()方法的行为相对于由 rotate(),scale(), translate(), or transform() 完成的其他变换。
+        例如：如果我们已经将绘图设置为放到两倍，则 transform() 方法会把绘图放大两倍，那么我们的绘图最终将放大四倍。
+        这一点和之前的变换是一样的。
+
+        但是setTransform()不会相对于其他变换来发生行为。它的参数也是六个，context.setTransform(a,b,c,d,e,f)，
+        与transform()一样。
+
+        这里我们通过一个例子来说明： 绘制一个矩形，通过 setTransform() 重置并创建新的变换矩阵，再次绘制矩形，
+        重置并创建新的变换矩阵，然后再次绘制矩形。
+    -->
+</head>
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+        context.fillStyle = "#FFF";
+        context.fillRect(0,0,800,600);
+
+        context.fillStyle="yellow";
+        context.fillRect(200,100,250,100)
+        context.setTransform(1,0.5,-0.5,1,30,10);
+
+        context.fillStyle="red";
+        context.fillRect(200,100,250,100);
+        context.transform(1,0.5,-0.5,1,30,10);
+
+        /*context.fillStyle="blue";
+        context.fillRect(200,100,250,100);*/
+    };
+</script>
+
+</html>
