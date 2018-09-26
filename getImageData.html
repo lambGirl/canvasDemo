@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getImageData</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+<script>
+    var canvas =  document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    canvas.width = 800;
+    canvas.height = 600;
+
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0,0,100,100);
+
+    //获取矩形框的像素
+   // var oImg = ctx.getImageData(0,0,100,300);
+    /**
+     * createImageData(w,h)  表示创建一个规定尺寸的ImageData对象
+     * createImageData(ImageData)  表示创建与指定的另一个 ImageData 对象尺寸相同的新 ImageData 对象（不会复制图像数据）
+     */
+    //这个是创建一个图像对象
+    var oImg1 = ctx.createImageData(100,100);
+
+    //putImageData(imageData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight)  方法将图像数据（从指定的 ImageData 对象）放回画布上
+    /**
+     *  imageData指创建或获取的imageData对象
+
+        x,y表示imageData对象的左上角坐标
+
+        dirtyX,dirtyY 表示在画布上放置图像的坐标，以像素计，可选
+
+        dirtyWidth,dirtyHeight 表示在画布上放置的图形大小，可选
+     *
+     */
+    var oImg = ctx.getImageData(0,0,100,100);
+    //console.log("oImg",oImg);
+    for(var i=0;i<oImg.width;i++){
+        setXY(oImg,i,10,[255,0,0,255]);
+    }
+    for(var i=0;i<oImg.height;i++){
+        setXY(oImg,10,i,[255,0,0,255]);
+    }
+ //   setXY(oImg,10,10,[255,255,255,255]);
+    //不规定宽度按照对应的图形的原有高度处理
+    ctx.putImageData(oImg,100,100);
+
+    ctx.putImageData(oImg,100,0,10,10,50,50);
+
+    function setXY(obj,x,y,color){
+        var w = obj.width;
+        var h = obj.height;
+        console.log("w",w);
+        obj.data[4*(w*y+x)] = color[0];
+        obj.data[4*(w*y+x)+1] = color[1];
+        obj.data[4*(w*y+x)+2] = color[2];
+        obj.data[4*(w*y+x)+3] = color[3];
+    }
+</script>
+</body>
+</html>

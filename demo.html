@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.图片的裁剪</title>
+</head>
+<body>
+<canvas width="500" height="400" id="canvas">
+    <span>亲，您的浏览器不支持canvas，换个浏览器试试吧！</span>
+</canvas>
+
+<canvas width="500" height="400" id="canvasVideo">
+    <span>亲，您的浏览器不支持canvas，换个浏览器试试吧！</span>
+</canvas>
+<video id="video1" controls width="270">
+    <source src="http://www.w3school.com.cn/example/html5/mov_bbb.mp4" type='video/mp4'>
+    <source src="http://www.w3school.com.cn/example/html5/mov_bbb.ogg" type='video/ogg'>
+    <source src="http://www.w3school.com.cn/example/html5/mov_bbb.webm" type='video/webm'>
+</video>
+</body>
+<script>
+    window.onload =  function(){
+        /*var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle="#000";
+        ctx.fillRect(0,0,500,600);
+        var aImg = new Image();
+        aImg.src = './ncm.png';
+        aImg.onload = function(){
+            ctx.drawImage(aImg,100,0,180,300,150,10,150,300);
+        }*/
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var oImg = document.getElementById("img");
+        var oVideo = document.getElementById("video1");
+        /*var timer = setInterval(function(){
+            ctx.drawImage(oVideo,10,10,270,135);
+            console.log("111");
+        },20)*/
+
+    }
+</script>
+</html>
