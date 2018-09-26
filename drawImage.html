@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drawImage ---- 绘制图像</title>
+    <!--
+        drawImage()是一个很关键的方法，它可以引入图像、画布、视频，并对其进行缩放或裁剪。
+        一共有三种表现形式：
+            三参数：context.drawImage(img,x,y)
+            五参数：context.drawImage(img,x,y,width,height)
+            九参数：context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height)
+
+
+            img	    规定要使用的图像、画布或视频。
+            sx	    可选。开始剪切的 x 坐标位置。
+            sy	    可选。开始剪切的 y 坐标位置。
+            swidth	可选。被剪切图像的宽度。
+            sheight	可选。被剪切图像的高度。
+            x	    在画布上放置图像的 x 坐标位置。
+            y	    在画布上放置图像的 y 坐标位置。
+            width	可选。要使用的图像的宽度。（伸展或缩小图像）
+            height	可选。要使用的图像的高度。（伸展或缩小图像）
+    -->
+    <style>
+        body { background: url("./bg3.jpg") repeat; }
+        #canvas { border: 1px solid #aaaaaa; display: block; margin: 50px auto; }
+    </style>
+</head>
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas">
+            你的浏览器居然不支持Canvas？！赶快换一个吧！！
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+        context.fillStyle = "#FFF";
+        context.fillRect(0,0,800,600);
+
+        context.beginPath();
+        context.moveTo(400,260);
+        context.bezierCurveTo(450,220,450,300,400,315);
+        context.bezierCurveTo(350,300,350,220,400,260);
+        context.clip();
+        context.closePath();
+
+        var img = new Image();
+        img.src = "./20-1.jpg";
+        img.onload = function(){
+            context.drawImage(img,348,240,100,100);
+        }
+    };
+</script>
+</html>
