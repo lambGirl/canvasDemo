@@ -16,8 +16,8 @@
     canvas.width = 800;
     canvas.height = 600;
 
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0,0,100,100);
+    //ctx.fillStyle = "#000";
+    //ctx.fillRect(0,0,100,100);
 
     //获取矩形框的像素
    // var oImg = ctx.getImageData(0,0,100,300);
@@ -26,7 +26,7 @@
      * createImageData(ImageData)  表示创建与指定的另一个 ImageData 对象尺寸相同的新 ImageData 对象（不会复制图像数据）
      */
     //这个是创建一个图像对象
-    var oImg1 = ctx.createImageData(100,100);
+   // var oImg1 = ctx.createImageData(100,100);
 
     //putImageData(imageData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight)  方法将图像数据（从指定的 ImageData 对象）放回画布上
     /**
@@ -39,7 +39,7 @@
         dirtyWidth,dirtyHeight 表示在画布上放置的图形大小，可选
      *
      */
-    var oImg = ctx.getImageData(0,0,100,100);
+    /*var oImg = ctx.getImageData(0,0,100,100);
     //console.log("oImg",oImg);
     for(var i=0;i<oImg.width;i++){
         setXY(oImg,i,10,[255,0,0,255]);
@@ -61,6 +61,39 @@
         obj.data[4*(w*y+x)+1] = color[1];
         obj.data[4*(w*y+x)+2] = color[2];
         obj.data[4*(w*y+x)+3] = color[3];
+    }*/
+
+    ctx.save();
+    ctx.restore();
+    ctx.fillStyle = 'red';
+    ctx.arc(150,150,100,0,360*Math.PI/180,false);
+
+    ctx.fill();
+    //获取矩形框的像素
+    var oImg2 = ctx.getImageData(50,50,200,200);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var w = oImg2.width;
+    var h = oImg2.height;
+    var arr = randomNum(w*h,w*h/10);
+    var newImg = ctx.createImageData(oImg2);
+    for(var i=0;i<arr.length;i++){
+        newImg.data[4*arr[i]] = oImg2.data[4*arr[i]];
+        newImg.data[4*arr[i]+1] = oImg2.data[4*arr[i]+1];
+        newImg.data[4*arr[i]+2] = oImg2.data[4*arr[i]+2];
+        newImg.data[4*arr[i]+3] = oImg2.data[4*arr[i]+3];
+    }
+    ctx.putImageData(newImg,50,50);
+    //某区域的部分随机数
+    function randomNum(iAll,iNow){
+        var arr = [];
+        var newArr = [];
+        for(var i=1;i<=iAll;i++){
+            arr.push(i);
+        }
+        for(var i=0;i<iNow;i++){
+            newArr.push(arr.splice(Math.random()*(arr.length),1));
+        }
+        return newArr;
     }
 </script>
 </body>
