@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>border1px</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style>
+        .border1px{
+            position: relative;
+        }
+
+        .border1px:after {
+            position: absolute;
+            content: '';
+            top: -50%;
+            bottom: -50%;
+            left: -50%;
+            right: -50%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            border-top: 1px solid #666;
+            border-bottom: 1px solid #666;
+        }
+        body{
+            background: #f00;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body >
+    <div class="border1px"></div>
+</body>
+</html>
